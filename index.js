@@ -74,9 +74,6 @@ async function run(){
             console.log(id)
         })
         
-        
-       
-
 
 
 
