@@ -22,7 +22,36 @@ async function run(){
         const categoryCollection = client.db("watchPro").collection("categories");
         const productCollection = client.db("watchPro").collection("products");
         
-        
+        app.post('/users', async(req,res)=>{
+            const user = req.body;
+            console.log(user)
+            const result = await  userCollection.insertOne(user)
+            res.send(result)
+            
+        })
+        app.get('/users', async(req, res)=>{
+            const query = {}
+            const result = await userCollection.find(query).toArray();
+            res.send(result)
+        })
+        app.get('/users/getUserByEmail', async(req, res)=>{
+            const email = req.query.email
+            const query = {email : email}
+            const result = await userCollection.find(query).toArray()
+            res.send(result)
+        })
+        // post products
+        app.post('/products', async(req, res)=>{
+             const product = req.body;
+             const result = await productCollection.insertOne(product)
+             res.send(result)
+        })
+
+        app.get('/products', async(req, res)=>{
+            const query = {};
+            const result = await productCollection.find(query).toArray()
+            res.send(result)
+       })
         //post categories 
         app.post('/category', async(req,res)=>{
             const category = req.body;
