@@ -22,6 +22,7 @@ async function run(){
         const categoryCollection = client.db("watchPro").collection("categories");
         const productCollection = client.db("watchPro").collection("products");
         const bookingCollection = client.db("watchPro").collection("productsBooking");
+
         app.post('/users', async(req,res)=>{
             const user = req.body;
             console.log(user)
@@ -80,6 +81,12 @@ async function run(){
             const result = await bookingCollection.insertOne(booking)
             res.send(result)
             console.log(result)
+        })
+        // get bokking 
+        app.get('/booking', async(req, res)=>{
+            const query = {}
+            const result = await bookingCollection.find(query).toArray()
+            res.send(result)
         })
 
 
