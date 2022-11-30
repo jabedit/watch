@@ -83,6 +83,7 @@ async function run(){
             console.log(result)
         })
         // get bokking 
+        // bokking 
         app.get('/booking', async(req, res)=>{
             const query = {}
             const result = await bookingCollection.find(query).toArray()
